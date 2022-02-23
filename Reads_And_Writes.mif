@@ -1,0 +1,86 @@
+-- Altera Memory Initialization File (MIF)
+
+DEPTH = 2048;
+WIDTH = 16;
+
+ADDRESS_RADIX = HEX;
+DATA_RADIX = HEX;
+
+CONTENT
+  BEGIN
+    [000..7FF] : 0000;  -- Default to NOP
+
+           000 : B800;  -- 	LOADI   0
+           001 : 9812;  -- 	OUT		SRAM_ADHI
+           002 : B800;  -- 	LOADI   0
+           003 : 9811;  -- 	OUT     SRAM_ADLOW
+           004 : B801;  -- 	LOADI   &b01		
+           005 : 9813;  -- 	OUT     SRAM_DIR
+           006 : B820;  -- 	LOADI   32
+           007 : 9810;  -- 	OUT     SRAM_DATA	;write the value 32 to &H0000
+           008 : B821;  -- 	LOADI   33
+           009 : 9810;  -- 	OUT     SRAM_DATA   ;write the value 33 to &H0001
+           00A : 9011;  -- 	IN      SRAM_ADLOW
+           00B : B822;  -- 	LOADI 	34			;write the value 34 to &H0002
+           00C : 9810;  -- 	OUT		SRAM_DATA
+           00D : B823;  -- 	LOADI 	35			;write the value 35 to &H0003
+           00E : 9810;  -- 	OUT		SRAM_DATA
+           00F : 9011;  -- 	IN      SRAM_ADLOW
+           010 : B824;  -- 	LOADI 	36			;write the value 36 to &H0004
+           011 : 9810;  -- 	OUT		SRAM_DATA
+           012 : B825;  -- 	LOADI 	37			;write the value 37 to &H0005
+           013 : 9810;  -- 	OUT		SRAM_DATA
+           014 : 9011;  -- 	IN      SRAM_ADLOW
+           015 : B826;  -- 	LOADI 	38			;write the value 38 to &H0006
+           016 : 9810;  -- 	OUT		SRAM_DATA
+           017 : B827;  -- 	LOADI 	39			;write the value 39 to &H0007
+           018 : 9810;  -- 	OUT		SRAM_DATA
+           019 : 9011;  -- 	IN      SRAM_ADLOW
+           01A : B828;  -- 	LOADI 	40			;write the value 40 to &H0008
+           01B : 9810;  -- 	OUT		SRAM_DATA
+           01C : B829;  -- 	LOADI 	41			;write the value 41 to &H0009
+           01D : 9810;  -- 	OUT		SRAM_DATA
+           01E : B82A;  -- 	LOADI 	42			;write the value 42 to &H000A
+           01F : 9810;  -- 	OUT		SRAM_DATA
+           020 : B82B;  -- 	LOADI 	43			;write the value 43 to &H000B
+           021 : 9810;  -- 	OUT		SRAM_DATA
+           022 : B82C;  -- 	LOADI 	44			;write the value 44 to &H000C
+           023 : 9810;  -- 	OUT		SRAM_DATA
+           024 : B82D;  -- 	LOADI 	45			;write the value 45 to &H000D
+           025 : 9810;  -- 	OUT		SRAM_DATA
+           026 : B82E;  -- 	LOADI 	46			;write the value 46 to &H000E
+           027 : 9810;  -- 	OUT		SRAM_DATA
+           028 : B82F;  -- 	LOADI 	47			;write the value 47 to &H000F
+           029 : 9810;  -- 	OUT		SRAM_DATA
+           02A : B830;  -- 	LOADI 	48			;write the value 48 to &H0010
+           02B : 9810;  -- 	OUT		SRAM_DATA
+           02C : B831;  -- 	LOADI 	49			;write the value 49 to &H0011
+           02D : 9810;  -- 	OUT		SRAM_DATA
+           02E : B832;  -- 	LOADI 	50			;write the value 50 to &H0012
+           02F : 9810;  -- 	OUT		SRAM_DATA
+           030 : B833;  -- 	LOADI 	51			;write the value 51 to &H0013
+           031 : 9810;  -- 	OUT		SRAM_DATA
+           032 : B802;  --     LOADI  &B10
+           033 : 9813;  --     OUT    SRAM_DIR
+           034 : 9010;  --    	IN     SRAM_DATA    ;read 50 from &H0012
+           035 : 9010;  --     IN     SRAM_DATA    ;read 49 from &H0011
+           036 : 9010;  --     IN     SRAM_DATA    ;read 48 from &H0010
+           037 : 9010;  --     IN     SRAM_DATA    ;read 47 from &H000F
+           038 : 9010;  --     IN     SRAM_DATA    ;read 46 from &H000E
+           039 : 9010;  --     IN     SRAM_DATA    ;read 45 from &H000D
+           03A : 9010;  --     IN     SRAM_DATA    ;read 44 from &H000C
+           03B : 9010;  --     IN     SRAM_DATA    ;read 43 from &H000B
+           03C : 9010;  --     IN     SRAM_DATA    ;read 42 from &H000A
+           03D : 9010;  --     IN     SRAM_DATA    ;read 41 from &H0009
+           03E : 9010;  --     IN     SRAM_DATA    ;read 40 from &H0008
+           03F : 9010;  --     IN     SRAM_DATA    ;read 39 from &H0007
+           040 : 9010;  --     IN     SRAM_DATA    ;read 38 from &H0006
+           041 : 9010;  --     IN     SRAM_DATA    ;read 37 from &H0005
+           042 : 9010;  --     IN     SRAM_DATA    ;read 36 from &H0004
+           043 : 9010;  --     IN     SRAM_DATA    ;read 35 from &H0003
+           044 : 9010;  --     IN     SRAM_DATA    ;read 34 from &H0002
+           045 : 9010;  --     IN     SRAM_DATA    ;read 33 from &H0001
+           046 : 9010;  --     IN     SRAM_DATA    ;read 32 from &H0000
+           047 : 2847;  -- 	JUMP	Done
+           048 : 0000;  -- 	DW 0
+  END;

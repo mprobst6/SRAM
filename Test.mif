@@ -1,0 +1,57 @@
+-- Altera Memory Initialization File (MIF)
+
+DEPTH = 2048;
+WIDTH = 16;
+
+ADDRESS_RADIX = HEX;
+DATA_RADIX = HEX;
+
+CONTENT
+  BEGIN
+    [000..7FF] : 0000;  -- Default to NOP
+
+           000 : 800C;  -- 	CALL	SETUP
+           001 : B804;  -- 	LOADI	4
+           002 : 1028;  -- 	STORE	WRITECOUNT
+           003 : B802;  -- 	LOADI	2
+           004 : 1029;  -- 	STORE	READCOUNT
+           005 : 8011;  -- 	CALL	WRITESEQ 
+           006 : B802;  -- 	LOADI	2
+           007 : 102A;  -- 	STORE	DIRECTION
+           008 : 801C;  -- 	CALL 	READSEQ
+           009 : 9012;  -- 	IN      SRAM_ADHI
+           00A : 9011;  -- 	IN      SRAM_ADLOW
+           00B : 280B;  -- 	JUMP	Done
+           00C : 0826;  -- SETUP:	LOAD    ADHI		;load values set beforehand
+           00D : 9812;  -- 		OUT		SRAM_ADHI
+           00E : 0827;  -- 		LOAD    ADLOW
+           00F : 9811;  -- 		OUT     SRAM_ADLOW  ;set memory address to location of ADHI and ADLOW
+           010 : 8800;  -- 		RETURN
+           011 : 082A;  -- WRITESEQ:	LOAD	DIRECTION	
+           012 : 9813;  -- 			OUT		SRAM_DIR
+           013 : 8015;  -- 			CALL	WRITE
+           014 : 8800;  -- 			RETURN
+           015 : 0828;  -- WRITE:	LOAD	WRITECOUNT	;load your value
+           016 : 9810;  -- 		OUT 	SRAM_DATA
+           017 : 0828;  -- 		LOAD	WRITECOUNT
+           018 : 6FFF;  -- 		ADDI 	-1
+           019 : 1028;  -- 		STORE	WRITECOUNT
+           01A : 3815;  -- 		JPOS 	WRITE
+           01B : 8800;  -- 		RETURN
+           01C : 082A;  -- READSEQ:	LOAD	DIRECTION	
+           01D : 9813;  -- 			OUT		SRAM_DIR
+           01E : 8020;  -- 			CALL	READ
+           01F : 8800;  -- 			RETURN
+           020 : 9010;  -- READ:	IN		SRAM_DATA
+           021 : 0829;  -- 		LOAD	READCOUNT
+           022 : 6FFF;  -- 		ADDI 	-1
+           023 : 1029;  -- 		STORE	READCOUNT
+           024 : 3820;  -- 		JPOS 	READ
+           025 : 8800;  -- 		RETURN
+           026 : 0000;  -- ADHI:	DW		0
+           027 : 0000;  -- ADLOW:	DW		0
+           028 : 0001;  -- WRITECOUNT:	DW	1
+           029 : 0001;  -- READCOUNT:	DW	1
+           02A : 0001;  -- DIRECTION: DW	1
+           02B : 0000;  -- 	DW 0
+  END;

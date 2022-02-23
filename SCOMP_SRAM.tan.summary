@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 16.523 ns
+From           : CHIP_EMULATOR:inst2|SRAM~414
+To             : SRAM_DQ[14]
+From Clock     : clk_50
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Clock Setup: 'altpll0:inst1|altpll:altpll_component|_clk0'
+Slack          : 6.195 ns
+Required Time  : 12.50 MHz ( period = 80.000 ns )
+Actual Time    : N/A
+From           : CHIP_EMULATOR:inst2|SRAM~239
+To             : SCOMP:inst|AC[15]
+From Clock     : altpll0:inst1|altpll:altpll_component|_clk1
+To Clock       : altpll0:inst1|altpll:altpll_component|_clk0
+Failed Paths   : 0
+
+Type           : Clock Setup: 'altpll0:inst1|altpll:altpll_component|_clk1'
+Slack          : 6.269 ns
+Required Time  : 25.00 MHz ( period = 40.000 ns )
+Actual Time    : 36.41 MHz ( period = 27.462 ns )
+From           : CHIP_EMULATOR:inst2|SRAM~239
+To             : FAST_SRAM:inst8|SRAM_ADDR_INT[15]
+From Clock     : altpll0:inst1|altpll:altpll_component|_clk1
+To Clock       : altpll0:inst1|altpll:altpll_component|_clk1
+Failed Paths   : 0
+
+Type           : Clock Hold: 'altpll0:inst1|altpll:altpll_component|_clk1'
+Slack          : -0.824 ns
+Required Time  : 25.00 MHz ( period = 40.000 ns )
+Actual Time    : N/A
+From           : CHIP_EMULATOR:inst2|SRAM~179
+To             : CHIP_EMULATOR:inst2|SRAM~227
+From Clock     : altpll0:inst1|altpll:altpll_component|_clk1
+To Clock       : altpll0:inst1|altpll:altpll_component|_clk1
+Failed Paths   : 18
+
+Type           : Clock Hold: 'altpll0:inst1|altpll:altpll_component|_clk0'
+Slack          : 0.391 ns
+Required Time  : 12.50 MHz ( period = 80.000 ns )
+Actual Time    : N/A
+From           : SCOMP:inst|IO_WRITE_INT
+To             : SCOMP:inst|IO_WRITE_INT
+From Clock     : altpll0:inst1|altpll:altpll_component|_clk0
+To Clock       : altpll0:inst1|altpll:altpll_component|_clk0
+Failed Paths   : 0
+
+Type           : Total number of failed paths
+Slack          : 
+Required Time  : 
+Actual Time    : 
+From           : 
+To             : 
+From Clock     : 
+To Clock       : 
+Failed Paths   : 18
+
+--------------------------------------------------------------------------------------
+

@@ -1,0 +1,52 @@
+-- Altera Memory Initialization File (MIF)
+
+DEPTH = 2048;
+WIDTH = 16;
+
+ADDRESS_RADIX = HEX;
+DATA_RADIX = HEX;
+
+CONTENT
+  BEGIN
+    [000..7FF] : 0000;  -- Default to NOP
+
+           000 : B801;  -- 	LOADI  &B01
+           001 : 9813;  -- 	OUT    SRAM_DIR
+           002 : 8003;  -- 	CALL STORE_ARRAY
+           003 : B81C;  -- 	LOADI ARRAY
+           004 : 1022;  -- 	STORE INDEX
+           005 : 1824;  -- 	ADD LENGTH
+           006 : 1023;  -- 	STORE END
+           007 : 2808;  -- 	JUMP ARRAY_LOOP_STORE
+           008 : 7022;  -- 	ILOAD INDEX
+           009 : 9810;  -- 	OUT SRAM_DATA
+           00A : 0822;  -- 	LOAD INDEX
+           00B : 6801;  -- 	ADDI 1
+           00C : 1022;  -- 	STORE INDEX
+           00D : 2023;  -- 	SUB END
+           00E : 3008;  -- 	JNEG ARRAY_LOOP_STORE
+           00F : 8800;  -- 	RETURN
+           010 : B81C;  -- 	LOADI ARRAY
+           011 : 1022;  -- 	STORE INDEX
+           012 : 1824;  -- 	ADD LENGTH
+           013 : 1023;  -- 	STORE END
+           014 : 2815;  -- 	JUMP ARRAY_LOOP_READ
+           015 : 9010;  -- 	IN SRAM_DATA
+           016 : 7822;  -- 	ISTORE INDEX
+           017 : 0822;  -- 	LOAD INDEX
+           018 : 6801;  -- 	ADDI 1
+           019 : 2023;  -- 	SUB END
+           01A : 3015;  -- 	JNEG ARRAY_LOOP_READ
+           01B : 8800;  -- 	RETURN
+           01C : 0007;  -- ARRAY:  DW &H7
+           01D : 0002;  -- 		DW &H2
+           01E : 0009;  -- 		DW &H9
+           01F : 0010;  -- 		DW &H10
+           020 : 0000;  -- 		DW 0
+           021 : 0000;  -- 		DW 0
+           022 : 0000;  -- INDEX: 	DW 0
+           023 : 0000;  -- END: 	DW 0
+           024 : 0004;  -- LENGTH: DW &H4
+           025 : 2825;  -- 	JUMP	Done
+           026 : 0000;  -- 	DW 0
+  END;
